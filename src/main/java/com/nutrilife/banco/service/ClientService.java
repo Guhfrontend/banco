@@ -4,9 +4,11 @@ import com.nutrilife.banco.DTO.ClientDTO;
 import com.nutrilife.banco.domain.Client;
 import com.nutrilife.banco.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -26,6 +28,16 @@ public class ClientService {
     }
 
     public Client findById(UUID id) {
-        return clientRepository.findById(id).get();
+        Optional<Client> client = clientRepository.findById(id);
+        return client.get();
+    }
+
+    public Client save(Client client) {
+        return clientRepository.save(client);
+    }
+
+    public void deleteById(UUID id) {
+        clientRepository.deleteById(id);
+
     }
 }
