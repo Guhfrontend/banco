@@ -4,8 +4,10 @@ import com.nutrilife.banco.DTO.ClientDTO;
 import com.nutrilife.banco.domain.Client;
 import com.nutrilife.banco.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +39,10 @@ public class ClientService {
     }
 
     public void deleteById(UUID id) {
+        Optional<Client> client = clientRepository.findById(id);
+        if (client == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
         clientRepository.deleteById(id);
 
     }

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-//@RequestScope //o bean armazena e descarta depois da requisição
+@RequestScope //o bean armazena e descarta depois da requisição
 @CrossOrigin(origins = "*", allowedHeaders = "*") //permite acesso de qualquer origem, para que o front e o back consigam utilizar no localhost ao mesmo tempo
 @RestController
 @RequestMapping("/clients")
